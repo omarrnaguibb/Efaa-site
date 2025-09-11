@@ -120,8 +120,11 @@ const Home = ({}) => {
         if (birthday) {
           sessionStorage.setItem("birthday", birthday);
         }
-        sessionStorage.setItem("price", price);
-        setPrice(price);
+        if (price) {
+          sessionStorage.setItem("price", price);
+          setPrice(price);
+        }
+
         setLoading(false);
 
         if (birthday) {
@@ -153,11 +156,15 @@ const Home = ({}) => {
     setError("بيانات الدخول غير  صحيحة المحاولة مره اخري");
   });
 
-  socket.on("acceptOTPLogin", (id) => {
+  socket.on("acceptOTPLogin", ({ id, price }) => {
     console.log("user", ID);
     console.log("acceptOTPLogin From Admin", id);
     if (ID === id) {
       setLoading(false);
+      if (price) {
+        sessionStorage.setItem("price", price);
+        setPrice(price);
+      }
       setOtpVisible(false);
       setPopUp(true);
     }
