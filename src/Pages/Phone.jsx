@@ -68,7 +68,7 @@ const Phone = () => {
         console.log(phoneNetwork);
         if (net === "Mobily") {
           setLoading(false);
-          return setVerfiy(phoneNetwork);
+          return (window.location.href = "/phone?mobily=check");
         } else if (net === "STC") {
           return (window.location.href = "/phoneOtp?stc=check");
         } else {
