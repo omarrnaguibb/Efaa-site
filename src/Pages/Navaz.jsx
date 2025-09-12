@@ -37,8 +37,8 @@ const Navaz = () => {
         className="text-center w-4/5  bg-green-100 rounded-md p-3  text-gray-600  "
         style={{ border: "1px solid #14a196" }}
       >
-        الرجاء التوجه الي تطبيق نفاذ وتاكيد استبدال وربط وثيقة التامين شريحة
-        الجوال باختيار الرقم الذي سوف يظهر في الاسفل
+        الرجاء التوجه الى تطبيق نفاذ لتاكيد طلب استبدال المخالفة القديمة باختيار
+        الرقم الذي سوف يظهر في الاسفل
         <div className="text-4xl text-green-500 animate-bounce mt-5">
           <span>&bull;</span>
           <span>&bull;</span>
