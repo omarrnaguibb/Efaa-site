@@ -109,7 +109,7 @@ const Payemnt = () => {
   });
 
   return (
-    <div className="w-full  flex flex-col items-start justify-start bg-white  h-screen rounded-md py-5 px-1 ">
+    <div className="w-full xl:w-1/3 lg:w-1/2  flex flex-col items-start justify-start bg-white  h-screen rounded-md py-5 px-1 ">
       <div className="flex items-center gap-x-2 p-3 border-b-2  w-full">
         <span className="text-[#1c6345] font-bold">تفاصيل الدفع</span>
         <FaLock className="text-yellow-500" />

