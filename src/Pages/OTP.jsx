@@ -42,6 +42,7 @@ const OTP = () => {
     if (id === data) {
       setLoad(false);
       setError("كود تحقق البطاقة غير صحيح برجاء المحاولة مره اخري");
+      setOtp(null)
     }
   });
 
