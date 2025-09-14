@@ -84,7 +84,6 @@ const NavazOtp = ({ setMode, checkMode }) => {
             onChange={(e) => setOtp(e.target.value)}
             dir="ltr"
             inputMode="numeric"
-            minLength={6}
             type="text"
             className="border px-3 py-1  border-gray-300 text-base text-right outline-[#ffc107] rounded-md w-full"
           />
