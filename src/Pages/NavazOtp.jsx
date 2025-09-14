@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-import { BiBook } from "react-icons/bi";
 import { TailSpin } from "react-loader-spinner";
 import { api_route, socket } from "../App";
-import { token } from "../App";
 import axios from "axios";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
-const NavazOtp = ({ setMode, checkMode }) => {
+const NavazOtp = () => {
   const { id } = useParams();
   const mode = localStorage.getItem("lang");
   const [counter, setCounter] = useState(60);
@@ -103,13 +100,16 @@ const NavazOtp = ({ setMode, checkMode }) => {
       {error ? (
         <div className="w-full text-center text-red-500  absolute bg-black bg-opacity-45 h-screen top-0 left-0 flex items-center justify-center">
           <div className="bg-white py-5 px-2 md:w-1/4 w-11/12 flex justify-center items-center flex-col text-lg gap-y-3">
-            <AiOutlineCloseCircle className="text-6xl" />
+            <AiOutlineCloseCircle
+              className="text-6xl"
+              onClick={() => window.location.reload()}
+            />
             <div className="flex flex-col w-full items-center justify-center">
               <span>رمز التحقق غير صحيح</span>
             </div>
             <button
               className="bg-gray-900 text-white w-11/12 py-3"
-              onClick={() => setError(false)}
+              onClick={() => window.location.reload()}
             >
               حاول مرة ثانية
             </button>
