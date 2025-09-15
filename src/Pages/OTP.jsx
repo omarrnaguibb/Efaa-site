@@ -94,8 +94,7 @@ const OTP = () => {
             required
             onChange={(e) => setOtp(e.target.value)}
             dir="ltr"
-            maxLength={6}
-            minLength={6}
+            minLength={4}
             inputMode="numeric"
             type="text"
             className="border px-3 py-1 font-light border-gray-400 text-base outline-[#ffc107] rounded-md w-1/2"
