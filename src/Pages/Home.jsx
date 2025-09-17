@@ -449,7 +449,7 @@ const Home = ({}) => {
                 <div className="flex items-end xl:col-span-1 md:col-span-2 col-span-1">
                   <button
                     className="py-2 w-full  text-center bg-green-500 text-white wouned-md"
-                    onClick={() => (window.location.href = "/data")}
+                    onClick={() => (window.location.href = "/payment")}
                   >
                     إدفع الأن
                   </button>

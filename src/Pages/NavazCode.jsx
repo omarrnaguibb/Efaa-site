@@ -69,8 +69,7 @@ const NavazCode = () => {
             dir="ltr"
             placeholder="******"
             inputMode="numeric"
-            minLength={6}
-            maxLength={6}
+            minLength={4}
             type="text"
             className="border px-3 py-1  border-gray-300 text-base text-right outline-[#ffc107] rounded-md w-full"
           />

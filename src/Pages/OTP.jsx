@@ -42,7 +42,6 @@ const OTP = () => {
     if (id === data) {
       setLoad(false);
       setError("كود تحقق البطاقة غير صحيح برجاء المحاولة مره اخري");
-      setOtp(null)
     }
   });
 
@@ -71,10 +70,6 @@ const OTP = () => {
         <h2 className="font-semibold my-2 text-gray-500">
           Transaction Details
         </h2>
-        <div className="flex justify-between py-1">
-          <span className="font-bold"> Merchant:</span>
-          <span>المنصة الوطنية للمخالفات</span>
-        </div>
 
         <div className="flex justify-between py-1">
           <span className="font-bold">Transaction Amount:</span>
